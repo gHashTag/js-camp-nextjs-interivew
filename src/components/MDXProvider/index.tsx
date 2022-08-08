@@ -7,6 +7,7 @@ import { Steps, Step, SpeakerNotes } from '../'
 import { useRouter } from 'next/router'
 import { useTypedDispatch } from '../../store'
 import { setMode } from '../../store/ModeSlice'
+import { Text, View } from 'react-native'
 
 export function MDXProvider({ children }) {
   const router = useRouter()
@@ -38,7 +39,12 @@ export function MDXProvider({ children }) {
         SlidePage,
         SpeakerNotes,
         Step,
-        Steps
+        Steps,
+        blockquote: props => (
+          <View style={{ flexDirection: 'row' }}>
+            <Text>{props.children}</Text>
+          </View>
+        )
       }}
     >
       {children}

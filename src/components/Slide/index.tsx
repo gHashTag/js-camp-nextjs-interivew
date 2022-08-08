@@ -1,20 +1,25 @@
 import React from 'react'
-import styled from 'styled-components'
+import { StyleSheet, View } from 'react-native'
+import { H, W } from '../../constants'
 
-const StyledSlide = styled.div`
-  width: 100%;
-`
-
-export function Slide({ children, id, className }: SlideT) {
+export function Slide({ children, id }: SlideT) {
   return (
-    <StyledSlide id={id} className={className}>
+    <View key={id} style={container}>
       {children}
-    </StyledSlide>
+    </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    width: W,
+    height: H
+  }
+})
+
+const { container } = styles
 
 interface SlideT {
   children?: JSX.Element
   id?: string
-  className?: string
 }

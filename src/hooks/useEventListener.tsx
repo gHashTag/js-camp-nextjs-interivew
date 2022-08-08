@@ -1,5 +1,4 @@
 import { useRef, useEffect } from 'react'
-import { navigateT } from '../layouts/SlidePage'
 
 export default function useEventListener({
   eventName,

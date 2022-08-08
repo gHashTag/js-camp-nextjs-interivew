@@ -75,9 +75,4 @@ const useStorage = () => {
   }, [focused, currentSlide, currentPage])
 }
 
-export const Storage = () => {
-  useStorage()
-  return <></>
-}
-
 export default useStorage
