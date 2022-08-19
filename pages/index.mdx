@@ -1,30 +1,25 @@
+import { MdGeneratingTokens } from 'react-icons/md'
+
 <SlidePage next="2-next-lesson">
 
 # JS Camp
 
 Create presentations using Next & React & MDX.
 
----
+<btnIcon
+  onPress={() => {
+    console.log('🚀 - onPress')
+  }}
+  color={'orange'}
+  size={60}
+  IconComponent={MdGeneratingTokens}
+/>
 
 1. Clone this project.
 1. Write some MDX.
 1. Export as [static app](https://nextjs.org/docs/advanced-features/static-html-export)
 1. ???
 1. Profit as a speaker 💰💰💰
-
-<SpeakerNotes>
-    
-Private notes here.
-
-You can write an extremely long note and it'll still display inside of the presenter mode.
-
-# Even Markdown!
-
-- Just
-- do
-- it
-
-</SpeakerNotes>
 
 ---
 

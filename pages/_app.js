@@ -5,6 +5,7 @@ import TransitionPage from '../src/layouts/TransitionPage'
 import { Provider } from 'react-redux'
 import '../src/styles/globals.css'
 import { store } from '../src/store'
+import '../public/styles/globals.css'
 
 export default function App({ Component, pageProps }) {
   return (

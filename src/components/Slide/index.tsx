@@ -1,19 +1,14 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { H, W } from '../../constants'
 
 export function Slide({ children, id }: SlideT) {
-  return (
-    <View key={id} style={container}>
-      {children}
-    </View>
-  )
+  return <View style={{ ...container }}>{children}</View>
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: W,
-    height: H
+    height: '100%',
+    width: '100%'
   }
 })
 

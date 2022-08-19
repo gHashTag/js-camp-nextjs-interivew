@@ -1,12 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const initialState: initialStateT = {
-  currentSlide:
-    process.browser && window.location.hash
-      ? parseInt(window.location.hash.replace('#', ''))
-      : 0,
+  currentSlide: 0,
   currentStep: 0,
-  steps: []
+  steps: [],
+  slideCount: 0
 }
 
 export const frameSlice = createSlice({
@@ -47,6 +45,11 @@ export const frameSlice = createSlice({
     clearSteps: state => {
       state.steps = []
       state.currentStep = 0
+    },
+
+    // slideCount
+    setSlideCount: (state, action: PayloadAction<number>) => {
+      state.slideCount = action.payload
     }
   }
 })
@@ -60,7 +63,8 @@ export const {
   decrementCurrentStep,
   addStep,
   removeStep,
-  clearSteps
+  clearSteps,
+  setSlideCount
 } = frameSlice.actions
 
 export const frameReducer = frameSlice.reducer
@@ -69,4 +73,5 @@ interface initialStateT {
   currentSlide: number
   currentStep: number
   steps: number[]
+  slideCount: number
 }
