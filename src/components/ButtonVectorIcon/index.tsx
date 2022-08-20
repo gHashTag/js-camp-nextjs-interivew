@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleProp, TouchableOpacity, ViewStyle } from 'react-native'
 import { IconType } from 'react-icons'
 import { IoBanSharp } from 'react-icons/io5'
+import { useTheme } from '../../store'
 
 interface ButtonVectorIconI {
   IconComponent: IconType
@@ -18,7 +19,10 @@ export function ButtonVectorIcon({
   color,
   viewStyle
 }: ButtonVectorIconI) {
-  const curColor = color ? color : 'red'
+  const {
+    colors: { icon }
+  } = useTheme()
+  const curColor = color ? color : icon
   const defaultStyle = { width: size }
 
   return (
