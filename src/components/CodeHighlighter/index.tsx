@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism'
-import { StyleProp, StyleSheet, useColorScheme, View, ViewStyle } from 'react-native'
+import {
+  ScrollView,
+  StyleProp,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+  ViewStyle
+} from 'react-native'
 import copy from 'copy-to-clipboard'
 import { ButtonVectorIcon } from '../'
-import { GREEN, H } from '../../constants'
+import { GREEN, WHITE } from '../../constants'
 import { IoCheckmarkDoneOutline, IoCopyOutline } from 'react-icons/io5'
 
 interface CodeHighlighterT {
@@ -25,7 +32,6 @@ export function CodeHighlighter(props: CodeHighlighterT) {
     }
   }, [isCopy])
 
-  const isDark = useColorScheme() === 'dark'
   const lines = children.trim().split(/\r?\n/)
   const lastIndex = lines.length - 1
   const TextWithPadding = lines.reduce((pr, cur, id) => {
@@ -38,13 +44,20 @@ export function CodeHighlighter(props: CodeHighlighterT) {
     copy(children)
     setIsCopy(true)
   }
+
+  const { width, height } = useWindowDimensions()
+  const maxHeight = height / 1.5
+
+  const fullContainerStyle = { width, height, backgroundColor: '#2D2D2D' }
+  const containerStyle = { ...container, maxHeight }
+
   return (
-    <View style={[fullFill ? fullFillContainer : container, viewStyle]}>
-      <View>
+    <View style={[fullFill ? fullContainerStyle : containerStyle, viewStyle]}>
+      <ScrollView bounces={false}>
         <SyntaxHighlighter
-          style={isDark ? tomorrow : undefined}
+          style={tomorrow}
           language={languageType || 'jsx'}
-          customStyle={highlighter}
+          customStyle={fullFill ? highlighter : withRadiusHighlighter}
           codeTagProps={{
             style: {
               // @ts-ignore
@@ -56,24 +69,27 @@ export function CodeHighlighter(props: CodeHighlighterT) {
         >
           {TextWithPadding}
         </SyntaxHighlighter>
-        <ButtonVectorIcon
-          onPress={handleCopy}
-          size={25}
-          color={isCopy ? GREEN : undefined}
-          viewStyle={btnStyle}
-          IconComponent={isCopy ? IoCheckmarkDoneOutline : IoCopyOutline}
-        />
-      </View>
+      </ScrollView>
+      <ButtonVectorIcon
+        onPress={handleCopy}
+        size={25}
+        color={isCopy ? GREEN : WHITE}
+        viewStyle={btnStyle}
+        IconComponent={isCopy ? IoCheckmarkDoneOutline : IoCopyOutline}
+      />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   highlighter: {
-    borderRadius: 5,
+    paddingLeft: 10,
+    margin: 0
+  },
+  withRadiusHighlighter: {
     paddingVertical: 10,
-    paddingRight: 0,
-    paddingLeft: 10
+    paddingLeft: 10,
+    margin: 0
   },
   btnStyle: {
     position: 'absolute',
@@ -81,14 +97,11 @@ const styles = StyleSheet.create({
     top: 20
   },
   container: {
-    backgroundColor: 'red',
     marginHorizontal: 30,
-    flex: 1,
-    justifyContent: 'center'
-  },
-  fullFillContainer: {
-    height: H,
-    width: '100%'
+    backgroundColor: '#2D2D2D',
+    justifyContent: 'center',
+    borderRadius: 5,
+    overflow: 'hidden'
   }
 })
-const { highlighter, btnStyle, container, fullFillContainer } = styles
+const { highlighter, btnStyle, container, withRadiusHighlighter } = styles

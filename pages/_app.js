@@ -3,7 +3,6 @@ import { MDXProvider } from '../src/components'
 import { AnimatePresence } from 'framer-motion'
 import TransitionPage from '../src/layouts/TransitionPage'
 import { Provider } from 'react-redux'
-import '../src/styles/globals.css'
 import { store } from '../src/store'
 import '../public/styles/globals.css'
 
@@ -15,10 +14,11 @@ export default function App({ Component, pageProps }) {
           <TransitionPage>
             <Head>
               <title>JS Camp</title>
-              <link rel="icon" href="/favicon.ico" />
+              <link rel="stylesheet" href="/styles/reset.css" media="screen" />
+              <link rel="icon" href="/images/favicon.png" type="image/png" />
               <link
-                href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap"
                 rel="stylesheet"
+                href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack-subset.css"
               />
             </Head>
             <Component {...pageProps} />
