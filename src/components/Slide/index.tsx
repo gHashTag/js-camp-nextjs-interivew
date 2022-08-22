@@ -1,8 +1,12 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { useTheme } from '../../store'
 
-export function Slide({ children, id }: SlideT) {
-  return <View style={{ ...container }}>{children}</View>
+export function Slide({ children }: SlideT) {
+  const {
+    colors: { background }
+  } = useTheme()
+  return <View style={{ ...container, backgroundColor: background }}>{children}</View>
 }
 
 const styles = StyleSheet.create({
@@ -16,5 +20,4 @@ const { container } = styles
 
 interface SlideT {
   children?: JSX.Element
-  id?: string
 }
