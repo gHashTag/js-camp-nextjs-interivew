@@ -3,7 +3,7 @@ import { Appearance } from 'react-native'
 import { ColorsT, themes, allThemes } from './defaultThemes'
 
 const initialState: initialStateT = {
-  colors: Appearance.getColorScheme() === 'dark' ? themes.dark : themes.light
+  colors: themes.dark
 }
 
 export const themeSlice = createSlice({
