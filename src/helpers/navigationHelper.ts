@@ -1,10 +1,12 @@
 import { store } from '../store'
 import {
   clearSteps,
+  clearStepsAndSaveHistory,
   decrementCurrentStep,
   decrementSlide,
   incrementCurrentStep,
   incrementSlide,
+  initHistorySteps,
   setSlide
 } from '../store/FrameSlice'
 import router from 'next/router'
@@ -41,13 +43,14 @@ export const navigate =
       if (steps.length > 0 && currentStep < steps.length - 1)
         return dispatch(incrementCurrentStep())
 
+      dispatch(clearStepsAndSaveHistory())
       dispatch(incrementSlide())
-      dispatch(clearSteps())
     } else if (actionType === 'prev') {
       if (steps.length > 0 && currentStep !== 0) return dispatch(decrementCurrentStep())
 
-      dispatch(decrementSlide())
       dispatch(clearSteps())
+      dispatch(decrementSlide())
+      dispatch(initHistorySteps())
     }
   }
 

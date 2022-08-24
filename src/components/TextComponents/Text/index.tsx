@@ -47,6 +47,9 @@ const styles = StyleSheet.create({
   },
   italicStyle: {
     fontStyle: 'italic'
+  },
+  centeredText: {
+    textAlign: 'center'
   }
 })
 
@@ -104,7 +107,7 @@ export const Text = ({
         h6 && h6Style,
         p && paragraphStyle,
         isHeader && headersStyle,
-        centerText && { textAlign: 'center' },
+        centerText && centeredText,
         { color },
         isLink && { ...linkStyle, ...linkColor },
         bold && bolderStyle,
@@ -129,5 +132,6 @@ const {
   linkStyle,
   headersStyle,
   bolderStyle,
-  italicStyle
+  italicStyle,
+  centeredText
 } = styles

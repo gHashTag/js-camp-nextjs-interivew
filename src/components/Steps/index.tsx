@@ -6,5 +6,6 @@ export function Steps({ children }) {
       {element.props.children}
     </element.type>
   )
+
   return <div>{children.map(renderItems)}</div>
 }

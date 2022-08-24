@@ -4,7 +4,8 @@ const initialState: initialStateT = {
   currentSlide: 0,
   currentStep: 0,
   steps: [],
-  slideCount: 0
+  slideCount: 0,
+  stepHistory: []
 }
 
 export const frameSlice = createSlice({
@@ -43,6 +44,7 @@ export const frameSlice = createSlice({
       state.steps = state.steps.filter(step => step !== id)
     },
     clearSteps: state => {
+      state.stepHistory = state.stepHistory.filter(a => a.slideId !== state.currentSlide)
       state.steps = []
       state.currentStep = 0
     },
@@ -50,6 +52,26 @@ export const frameSlice = createSlice({
     // slideCount
     setSlideCount: (state, action: PayloadAction<number>) => {
       state.slideCount = action.payload
+    },
+    clearStepsAndSaveHistory: state => {
+      state.stepHistory = state.stepHistory.filter(a => a.slideId !== state.currentSlide)
+      if (state.steps.length > 0) {
+        state.stepHistory.push({
+          slideId: state.currentSlide,
+          step: state.steps.reverse()[0]
+        })
+      }
+
+      state.steps = []
+      state.currentStep = 0
+    },
+    initHistorySteps: state => {
+      const { slideId, step } =
+        state.stepHistory.find(a => a.slideId === state.currentSlide) || {}
+      if (slideId && step > 0) {
+        state.stepHistory.filter(a => a.slideId !== slideId)
+        state.currentStep = step
+      }
     }
   }
 })
@@ -64,7 +86,9 @@ export const {
   addStep,
   removeStep,
   clearSteps,
-  setSlideCount
+  setSlideCount,
+  clearStepsAndSaveHistory,
+  initHistorySteps
 } = frameSlice.actions
 
 export const frameReducer = frameSlice.reducer
@@ -74,4 +98,10 @@ interface initialStateT {
   currentStep: number
   steps: number[]
   slideCount: number
+  stepHistory: stepHistory[]
+}
+
+type stepHistory = {
+  slideId: number
+  step: number
 }

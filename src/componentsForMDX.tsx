@@ -2,15 +2,18 @@ import React from 'react'
 import SlidePage from './layouts/SlidePage'
 import {
   Steps,
-  Step,
+  StepTransition,
   ButtonVectorIcon,
   CodeHighlighter,
   Text,
-  Blockquote
+  Blockquote,
+  Img,
+  StepFade
 } from './components'
 import { MDXProviderComponentsProp } from '@mdx-js/react'
 import { OrderList, UnorderList } from './components/Lists'
 import { RenderParagraph } from './helpers/mdxComponentsHelper'
+import { FiftyFiftySlide } from './components/FiftyFiftySlide'
 
 const componentsForMDX: MDXProviderComponentsProp = {
   h1: ({ children }) => <Text h1 text={children} />,
@@ -24,9 +27,11 @@ const componentsForMDX: MDXProviderComponentsProp = {
   a: props => <Text isLink text={props.children} />,
   ol: ({ children }) => <OrderList items={children} />,
   ul: ({ children }) => <UnorderList items={children} />,
-
+  img: props => <Img {...props} />,
+  FiftyFiftySlide: props => <FiftyFiftySlide {...props} />,
   SlidePage: props => <SlidePage {...props} />,
-  Step: props => <Step {...props} />,
+  StepTransition: props => <StepTransition {...props} />,
+  StepFade: props => <StepFade {...props} />,
   Steps: props => <Steps {...props} />,
   blockquote: ({ children }) => <Blockquote text={children} />,
   btnIcon: props => <ButtonVectorIcon {...props} />

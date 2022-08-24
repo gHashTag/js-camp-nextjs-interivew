@@ -20,12 +20,13 @@ export const UnorderList = ({ items }) => {
   }
 
   return (
-    <FlatList
-      style={listContainer}
-      data={items}
-      keyExtractor={(item, index) => String(index)}
-      renderItem={_renderItem}
-    />
+    <View style={listContainer}>
+      <FlatList
+        data={items}
+        keyExtractor={(item, index) => String(index)}
+        renderItem={_renderItem}
+      />
+    </View>
   )
 }
 
@@ -36,7 +37,8 @@ const styles = StyleSheet.create({
     marginVertical: 2.5
   },
   listContainer: {
-    marginLeft: 5
+    marginLeft: 5,
+    height: 'auto'
   }
 })
 

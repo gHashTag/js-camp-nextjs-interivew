@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Text as RNText } from 'react-native'
 import { Text } from '../components'
 import { openLink } from '../constants'
 
@@ -50,12 +50,5 @@ export const RenderParagraph = ({ children }) => {
     }
   }, [children])
 
-  return <View style={container}>{getTexts}</View>
+  return <RNText>{getTexts}</RNText>
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row'
-  }
-})
-const { container } = styles

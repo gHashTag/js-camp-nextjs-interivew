@@ -22,12 +22,14 @@ export const OrderList = ({ items }) => {
   }
 
   return (
-    <FlatList
-      style={listContainer}
-      data={items}
-      keyExtractor={(item, index) => String(index)}
-      renderItem={_renderItem}
-    />
+    <View style={listContainer}>
+      <FlatList
+        style={listContainer}
+        data={items}
+        keyExtractor={(item, index) => String(index)}
+        renderItem={_renderItem}
+      />
+    </View>
   )
 }
 
@@ -38,7 +40,8 @@ const styles = StyleSheet.create({
     marginVertical: 3
   },
   listContainer: {
-    marginLeft: 5
+    marginLeft: 5,
+    height: 'auto'
   },
   orderCircle: {
     borderRadius: 30,

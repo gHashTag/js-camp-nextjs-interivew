@@ -1,7 +1,7 @@
 export const themes = {
   dark: {
     title: '#F5F5F5',
-    paragraph: '#DAD9D9',
+    paragraph: '#ededed',
     background: '#17191A',
     card: '#FAD961',
     icon: '#FF06F4',
@@ -14,7 +14,7 @@ export const themes = {
   },
   light: {
     title: '#0B0B0B',
-    paragraph: '#474747',
+    paragraph: '#212121',
     background: '#fff',
     card: '#FAD961',
     icon: '#FF06F4',

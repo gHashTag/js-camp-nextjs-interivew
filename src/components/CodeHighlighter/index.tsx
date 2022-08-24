@@ -60,10 +60,9 @@ export function CodeHighlighter(props: CodeHighlighterT) {
           customStyle={fullFill ? highlighter : withRadiusHighlighter}
           codeTagProps={{
             style: {
-              // @ts-ignore
-              'font-family': 'Hack, monospace',
-              'font-size': '18px',
-              'line-height': '22px'
+              fontFamily: 'Hack, monospace',
+              fontSize: '17px',
+              lineHeight: '22px'
             }
           }}
         >
@@ -94,10 +93,10 @@ const styles = StyleSheet.create({
   btnStyle: {
     position: 'absolute',
     right: 13,
-    top: 20
+    top: 15
   },
   container: {
-    marginHorizontal: 30,
+    marginHorizontal: 15,
     backgroundColor: '#2D2D2D',
     justifyContent: 'center',
     borderRadius: 5,
