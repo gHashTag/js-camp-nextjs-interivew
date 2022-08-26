@@ -1,7 +1,7 @@
 import React from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { RenderParagraph } from '../../../helpers/mdxComponentsHelper'
-import { useTheme } from '../../../store'
+import { useTheme } from '../../../hooks'
 import { Space } from '../../Space'
 import { Text } from '../../TextComponents'
 

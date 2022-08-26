@@ -1,22 +1,20 @@
 import React from 'react'
 import { Slide } from '../components'
-import { useTypedSelector } from '../store'
 import useKeypress from 'react-use-keypress'
 import { navigate } from '../helpers/navigationHelper'
-import { setSlideCount } from '../store/FrameSlice'
-import { useDispatch } from 'react-redux'
+import { usePersistReactiveVar } from '../hooks'
+import { frameState, setSlideCount } from '../store'
 
 export default function SlidePage({ children, next, prev }) {
-  const state = useTypedSelector(st => st)
-  const { currentSlide } = state.frame
-  const dispatch = useDispatch()
+  const frame = usePersistReactiveVar(frameState, 'frameState')
+  const { currentSlide } = frame
   useKeypress(
     'ArrowLeft',
-    navigate({ actionType: 'prev', nextPage: next, prevPage: prev, dispatch, state })
+    navigate({ actionType: 'prev', nextPage: next, prevPage: prev, frame })
   )
   useKeypress(
     'ArrowRight',
-    navigate({ actionType: 'next', nextPage: next, prevPage: prev, dispatch, state })
+    navigate({ actionType: 'next', nextPage: next, prevPage: prev, frame })
   )
 
   const generatedSlides = []
@@ -34,7 +32,7 @@ export default function SlidePage({ children, next, prev }) {
     }
     generatedSlides[generatorCount].push(child)
   })
-  dispatch(setSlideCount(generatorCount))
+  setSlideCount(generatorCount)
 
   return <Slide>{generatedSlides[currentSlide]}</Slide>
 }

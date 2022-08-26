@@ -12,7 +12,7 @@ import copy from 'copy-to-clipboard'
 import { ButtonVectorIcon } from '../'
 import { GREEN, WHITE } from '../../constants'
 import { IoCheckmarkDoneOutline, IoCopyOutline } from 'react-icons/io5'
-import { useTheme } from '../../store'
+import { useTheme } from '../../hooks'
 
 interface CodeHighlighterT {
   children: string

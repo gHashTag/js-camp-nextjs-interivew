@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { useTheme } from '../../store'
 import Image from 'next/image'
+import { useTheme } from '../../hooks'
 
 export function Slide({ children }: SlideT) {
   const {

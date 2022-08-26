@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { StyleSheet, View, Text as RNText } from 'react-native'
+import { Text as RNText } from 'react-native'
 import { Text } from '../components'
 import { openLink } from '../constants'
 

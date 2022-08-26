@@ -1,7 +1,7 @@
 import React from 'react'
 import { IoCaretForwardOutline } from 'react-icons/io5'
 import { FlatList, StyleSheet, View } from 'react-native'
-import { useTheme } from '../../../store'
+import { useTheme } from '../../../hooks'
 import { Space } from '../../Space'
 import { Text } from '../../TextComponents'
 

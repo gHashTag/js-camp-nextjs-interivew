@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native'
 import { addAlphaToHex } from '../../constants'
 import { RenderParagraph } from '../../helpers/mdxComponentsHelper'
-import { useTheme } from '../../store'
+import { useTheme } from '../../hooks'
 import { Text } from '../TextComponents'
 
 const BORDER_WIDTH = 1

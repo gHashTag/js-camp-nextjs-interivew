@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { addAlphaToHex } from '../../../constants'
-import { useTheme } from '../../../store'
+import { useTheme } from '../../../hooks'
 import { Text, TextT } from '../Text'
 
 export const Blockquote = (props: TextT) => {

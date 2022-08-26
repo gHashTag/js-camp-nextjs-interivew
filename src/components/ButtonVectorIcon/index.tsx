@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleProp, TouchableOpacity, ViewStyle } from 'react-native'
 import { IconType } from 'react-icons'
 import { IoBanSharp } from 'react-icons/io5'
-import { useTheme } from '../../store'
+import { useTheme } from '../../hooks'
 
 interface ButtonVectorIconI {
   IconComponent: IconType

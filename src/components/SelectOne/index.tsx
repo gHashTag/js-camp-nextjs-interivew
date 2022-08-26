@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from 'react'
 import { FlatList, Pressable, StyleSheet } from 'react-native'
-import { useTheme } from '../../store'
 import { Text } from '../TextComponents'
 import { Space } from '../Space'
 import { IoCheckmarkCircleOutline, IoEllipseOutline } from 'react-icons/io5'
+import { useTheme } from '../../hooks'
 
 interface SelectOneManyT {
   variants: string[]

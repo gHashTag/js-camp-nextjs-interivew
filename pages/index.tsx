@@ -1,14 +1,13 @@
 import React, { useMemo } from 'react'
 import { View } from 'react-native'
 import { SelectOne, Slide, Text, Row, Space, CenterView } from '../src/components'
-import { useTypedDispatch } from '../src/store'
-import { setCodeTheme, toggleTheme } from '../src/store/ThemeSlice'
+import { setCodeTheme, toggleTheme } from '../src/store/Theme'
 import {
   allThemes,
   themes,
   CodeThemes,
   allCodeThemes
-} from '../src/store/ThemeSlice/defaultThemes'
+} from '../src/store/Theme/defaultThemes'
 
 const getKeysList = (obj: object) => () => {
   let keys = []
@@ -23,14 +22,12 @@ export default function SettingsPage() {
   const themeVariants = useMemo(getKeysList(themes), [themes])
   const codeThemeVariants = useMemo(getKeysList(CodeThemes), [themes])
 
-  const dispatch = useTypedDispatch()
-
   const handleChangeTheme = (item: allThemes) => {
-    dispatch(toggleTheme(item))
+    toggleTheme(item)
   }
 
   const handleChangeCodeTheme = (item: allCodeThemes) => {
-    dispatch(setCodeTheme(item))
+    setCodeTheme(item)
   }
 
   return (

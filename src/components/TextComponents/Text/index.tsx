@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleProp, TextStyle, Text as RNText, TextProps, StyleSheet } from 'react-native'
-import { useTheme } from '../../../store'
+import { useTheme } from '../../../hooks'
 
 const styles = StyleSheet.create({
   h1Style: {

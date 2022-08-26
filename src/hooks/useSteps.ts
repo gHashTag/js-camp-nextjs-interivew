@@ -1,17 +1,19 @@
+import { usePersistReactiveVar } from './usePersistReactiveVar'
 import { useEffect } from 'react'
-import { useTypedDispatch, useTypedSelector } from '../store'
-import { addStep, removeStep } from '../store/FrameSlice'
+import { addStep, frameState, removeStep } from '../store/Frame'
 
 export const useSteps = (order: number) => {
-  const { currentStep, steps, currentSlide } = useTypedSelector(st => st.frame)
-  const dispatch = useTypedDispatch()
+  const { currentStep, steps, currentSlide } = usePersistReactiveVar(
+    frameState,
+    'frameState'
+  )
 
   useEffect(() => {
     if (!steps.includes(order)) {
-      dispatch(addStep(order))
+      addStep(order)
     }
     return () => {
-      dispatch(removeStep(order))
+      removeStep(order)
     }
   }, [order, addStep, currentSlide])
 
