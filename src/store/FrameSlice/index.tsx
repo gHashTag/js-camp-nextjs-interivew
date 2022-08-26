@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { HYDRATE } from 'next-redux-wrapper'
+import { AppState } from '../'
 
 const initialState: initialStateT = {
   currentSlide: 0,
@@ -73,6 +75,14 @@ export const frameSlice = createSlice({
         state.currentStep = step
       }
     }
+  },
+  extraReducers: {
+    [HYDRATE]: (state, action) => {
+      return {
+        ...state,
+        ...action.payload.subject
+      }
+    }
   }
 })
 
@@ -90,6 +100,8 @@ export const {
   clearStepsAndSaveHistory,
   initHistorySteps
 } = frameSlice.actions
+
+export const selectFrameState = (state: AppState) => state.frame
 
 export const frameReducer = frameSlice.reducer
 

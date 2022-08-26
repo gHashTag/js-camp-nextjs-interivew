@@ -1,17 +1,17 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { useTheme } from '../../store'
-import file from '../../../public/images/backgroundImage.png'
 import Image from 'next/image'
 
 export function Slide({ children }: SlideT) {
   const {
-    colors: { background }
+    colors: { background },
+    backgroundImage
   } = useTheme()
 
   return (
     <View style={{ ...container, backgroundColor: background }}>
-      <Image objectFit="cover" layout="fill" style={slideImage} src={file} />
+      <Image objectFit="cover" layout="fill" style={slideImage} src={backgroundImage} />
       {children}
     </View>
   )
@@ -32,5 +32,5 @@ const styles = StyleSheet.create({
 const { container, slideImage } = styles
 
 interface SlideT {
-  children?: JSX.Element | string
+  children?: JSX.Element | JSX.Element[] | string
 }

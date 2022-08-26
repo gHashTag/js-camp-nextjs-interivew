@@ -7,15 +7,16 @@ import { setSlideCount } from '../store/FrameSlice'
 import { useDispatch } from 'react-redux'
 
 export default function SlidePage({ children, next, prev }) {
-  const { currentSlide } = useTypedSelector(st => st.frame)
+  const state = useTypedSelector(st => st)
+  const { currentSlide } = state.frame
   const dispatch = useDispatch()
   useKeypress(
     'ArrowLeft',
-    navigate({ actionType: 'prev', nextPage: next, prevPage: prev })
+    navigate({ actionType: 'prev', nextPage: next, prevPage: prev, dispatch, state })
   )
   useKeypress(
     'ArrowRight',
-    navigate({ actionType: 'next', nextPage: next, prevPage: prev })
+    navigate({ actionType: 'next', nextPage: next, prevPage: prev, dispatch, state })
   )
 
   const generatedSlides = []

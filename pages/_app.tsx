@@ -2,13 +2,14 @@ import Head from 'next/head'
 import { MDXProvider } from '../src/components'
 import { AnimatePresence } from 'framer-motion'
 import TransitionPage from '../src/layouts/TransitionPage'
-import { Provider } from 'react-redux'
-import { store } from '../src/store'
+import { useTypedStore, wrapper } from '../src/store'
+import { PersistGate } from 'redux-persist/integration/react'
 import '../public/styles/globals.css'
 
-export default function App({ Component, pageProps }) {
+function App({ Component, pageProps }) {
+  const store = useTypedStore()
   return (
-    <Provider store={store}>
+    <PersistGate persistor={store.__persistor} loading={<div>Loading</div>}>
       <MDXProvider>
         <AnimatePresence exitBeforeEnter>
           <TransitionPage>
@@ -31,6 +32,23 @@ export default function App({ Component, pageProps }) {
           </TransitionPage>
         </AnimatePresence>
       </MDXProvider>
-    </Provider>
+    </PersistGate>
   )
 }
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  store =>
+    async ({ params }) => {
+      // we can set the initial state from here
+      // we are setting to false but you can run your custom logic here
+      await store.dispatch(setAuthState(false))
+      console.log('State on server', store.getState())
+      return {
+        props: {
+          authState: false
+        }
+      }
+    }
+)
+
+export default wrapper.withRedux(App)

@@ -50,6 +50,9 @@ const styles = StyleSheet.create({
   },
   centeredText: {
     textAlign: 'center'
+  },
+  withoutMarginStyle: {
+    marginVertical: 0
   }
 })
 
@@ -64,6 +67,7 @@ export type FontType = {
   isLink?: boolean
   bold?: boolean
   italic?: boolean
+  withoutMargin?: boolean
 }
 
 export interface TextT extends TextProps, FontType {
@@ -86,6 +90,7 @@ export const Text = ({
   centerText,
   bold,
   italic,
+  withoutMargin,
   ...otherProp
 }: TextT) => {
   const {
@@ -112,6 +117,7 @@ export const Text = ({
         isLink && { ...linkStyle, ...linkColor },
         bold && bolderStyle,
         italic && italicStyle,
+        withoutMargin && withoutMarginStyle,
         textStyle
       ]}
       {...otherProp}
@@ -133,5 +139,6 @@ const {
   headersStyle,
   bolderStyle,
   italicStyle,
-  centeredText
+  centeredText,
+  withoutMarginStyle
 } = styles

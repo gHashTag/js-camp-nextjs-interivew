@@ -1,4 +1,4 @@
-import { store } from '../store'
+import { AppDispatch, AppState } from './../store/index'
 import {
   clearSteps,
   clearStepsAndSaveHistory,
@@ -12,12 +12,11 @@ import {
 import router from 'next/router'
 
 export const navigate =
-  ({ actionType, prevPage, nextPage }: navigateT) =>
+  ({ actionType, prevPage, nextPage, dispatch, state }: navigateT) =>
   () => {
-    const { dispatch } = store
     const {
       frame: { currentSlide, steps, currentStep, slideCount }
-    } = store.getState()
+    } = state
 
     // Handle Previous page
     if (actionType === 'prev' && currentSlide === 0) {
@@ -58,4 +57,6 @@ export interface navigateT {
   actionType: 'next' | 'prev'
   prevPage: string
   nextPage: string
+  dispatch: AppDispatch
+  state: AppState
 }

@@ -1,10 +1,18 @@
+import {
+  tomorrow,
+  funky,
+  duotoneForest,
+  dracula,
+  prism
+} from 'react-syntax-highlighter/dist/cjs/styles/prism'
+
 export const themes = {
   dark: {
     title: '#F5F5F5',
     paragraph: '#ededed',
     background: '#17191A',
-    card: '#FAD961',
-    icon: '#FF06F4',
+    card: '#FF06F4',
+    icon: '#FAD961',
     border: '#BAB9B9',
     link: '#50E3C2',
     gray: '#949494',
@@ -54,4 +62,17 @@ export type ColorsT = {
   importantInfo: string
 }
 
+export const CodeThemes = {
+  funky,
+  tomorrow,
+  duotoneForest,
+  dracula,
+  prism
+}
+export type allCodeThemes =
+  | 'funky'
+  | 'tomorrow'
+  | 'tulumduotoneForest'
+  | 'dracula'
+  | 'prism'
 export type allThemes = 'dark' | 'light' | 'tulum'

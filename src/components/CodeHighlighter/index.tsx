@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import {
   ScrollView,
   StyleProp,
@@ -13,6 +12,7 @@ import copy from 'copy-to-clipboard'
 import { ButtonVectorIcon } from '../'
 import { GREEN, WHITE } from '../../constants'
 import { IoCheckmarkDoneOutline, IoCopyOutline } from 'react-icons/io5'
+import { useTheme } from '../../store'
 
 interface CodeHighlighterT {
   children: string
@@ -25,7 +25,7 @@ export function CodeHighlighter(props: CodeHighlighterT) {
   const { children, className: language, viewStyle, fullFill = false } = props
   const languageType = language.replace('language-', '')
   const [isCopy, setIsCopy] = useState<boolean>(false)
-
+  const { codeTheme } = useTheme()
   useEffect(() => {
     if (isCopy === true) {
       setTimeout(() => setIsCopy(false), 2000)
@@ -55,7 +55,7 @@ export function CodeHighlighter(props: CodeHighlighterT) {
     <View style={[fullFill ? fullContainerStyle : containerStyle, viewStyle]}>
       <ScrollView bounces={false}>
         <SyntaxHighlighter
-          style={tomorrow}
+          style={codeTheme}
           language={languageType || 'jsx'}
           customStyle={fullFill ? highlighter : withRadiusHighlighter}
           codeTagProps={{

@@ -8,7 +8,9 @@ import {
   Text,
   Blockquote,
   Img,
-  StepFade
+  StepFade,
+  TableRow,
+  TableWrapper
 } from './components'
 import { MDXProviderComponentsProp } from '@mdx-js/react'
 import { OrderList, UnorderList } from './components/Lists'
@@ -28,6 +30,10 @@ const componentsForMDX: MDXProviderComponentsProp = {
   ol: ({ children }) => <OrderList items={children} />,
   ul: ({ children }) => <UnorderList items={children} />,
   img: props => <Img {...props} />,
+  tr: props => {
+    return <TableRow tr={props.children} />
+  },
+  table: props => <TableWrapper {...props} />,
   FiftyFiftySlide: props => <FiftyFiftySlide {...props} />,
   SlidePage: props => <SlidePage {...props} />,
   StepTransition: props => <StepTransition {...props} />,
