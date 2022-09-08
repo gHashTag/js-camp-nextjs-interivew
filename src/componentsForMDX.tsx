@@ -10,7 +10,8 @@ import {
   Img,
   StepFade,
   TableRow,
-  TableWrapper
+  TableWrapper,
+  SpeechNotes
 } from './components'
 import { MDXProviderComponentsProp } from '@mdx-js/react'
 import { OrderList, UnorderList } from './components/Lists'
@@ -40,6 +41,7 @@ const componentsForMDX: MDXProviderComponentsProp = {
   StepFade: props => <StepFade {...props} />,
   Steps: props => <Steps {...props} />,
   blockquote: ({ children }) => <Blockquote text={children} />,
-  btnIcon: props => <ButtonVectorIcon {...props} />
+  btnIcon: props => <ButtonVectorIcon {...props} />,
+  SpeechNotes: props => <SpeechNotes {...props} />
 }
 export default componentsForMDX

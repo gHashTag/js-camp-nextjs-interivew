@@ -14,8 +14,8 @@ export const TableRow = ({ tr }: TableT) => {
 
   return (
     <View style={[container, { borderColor }]}>
-      {tr.map(item => (
-        <RenderItem item={item} />
+      {tr.map((item, id) => (
+        <RenderItem key={id} item={item} />
       ))}
     </View>
   )

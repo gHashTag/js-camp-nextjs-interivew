@@ -3,7 +3,7 @@ import {
   clearStepsAndSaveHistory,
   decrementCurrentStep,
   decrementSlide,
-  frameStateT,
+  frameState,
   incrementCurrentStep,
   incrementSlide,
   initHistorySteps,
@@ -12,9 +12,9 @@ import {
 import router from 'next/router'
 
 export const navigate =
-  ({ actionType, prevPage, nextPage, frame }: navigateT) =>
+  ({ actionType, prevPage, nextPage }: navigateT) =>
   () => {
-    const { currentSlide, steps, currentStep, slideCount } = frame
+    const { currentSlide, steps, currentStep, slideCount } = frameState()
 
     // Handle Previous page
     if (actionType === 'prev' && currentSlide === 0) {
@@ -55,5 +55,4 @@ export interface navigateT {
   actionType: 'next' | 'prev'
   prevPage: string
   nextPage: string
-  frame: frameStateT
 }

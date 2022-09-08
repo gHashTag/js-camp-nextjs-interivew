@@ -17,7 +17,9 @@ export const useSteps = (order: number) => {
     }
   }, [order, addStep, currentSlide])
 
-  const stepIndex = steps.findIndex(step => step === order)
+  const stepIndex = steps.findIndex(step => {
+    return step === order
+  })
   const isVisible = stepIndex >= 0 && stepIndex <= currentStep
 
   return { isVisible }

@@ -8,8 +8,11 @@ import {
   CodeThemes,
   allCodeThemes
 } from '../src/store/Theme/defaultThemes'
+import useKeypress from 'react-use-keypress'
+import { navigate } from '../src/helpers/navigationHelper'
+import { fetchSpeechData } from '../src/helpers/fetchSpeech'
 
-const getKeysList = (obj: object) => () => {
+const getKeysList = (obj: object) => {
   let keys = []
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
@@ -19,8 +22,17 @@ const getKeysList = (obj: object) => () => {
   return keys
 }
 export default function SettingsPage() {
-  const themeVariants = useMemo(getKeysList(themes), [themes])
-  const codeThemeVariants = useMemo(getKeysList(CodeThemes), [themes])
+  useKeypress(
+    'ArrowRight',
+    navigate({ actionType: 'next', nextPage: '1-lesson', prevPage: '' })
+  )
+  // const fetchSpeech = async () => {
+  //   // if (!!currentSpeech && currentSpeech.version < version) {
+  //   const speechData = await fetchSpeechData('дети цветы')
+  //   console.log('🚀 - res', speechData)
+  // }
+  const themeVariants = getKeysList(themes)
+  const codeThemeVariants = getKeysList(CodeThemes)
 
   const handleChangeTheme = (item: allThemes) => {
     toggleTheme(item)

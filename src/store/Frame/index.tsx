@@ -70,7 +70,7 @@ export const frameActions = {
             ...newStepHistory,
             {
               slideId: prev.currentSlide,
-              step: prev.steps.reverse()[0]
+              step: prev.steps.reverse()[0] + 1
             }
           ]
         : newStepHistory

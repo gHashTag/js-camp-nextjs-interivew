@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import { FlatList, Pressable, StyleSheet } from 'react-native'
 import { Text } from '../TextComponents'
 import { Space } from '../Space'
@@ -15,12 +15,10 @@ export function SelectOne({ variants, onChange }: SelectOneManyT) {
 
   const handleChange = useCallback(
     (changed: string) => {
-      if (choice !== changed) {
-        onChange(changed)
-        setChoice(changed)
-      }
+      onChange(changed)
+      setChoice(changed)
     },
-    [onChange, choice]
+    [onChange]
   )
 
   return (
@@ -32,7 +30,11 @@ export function SelectOne({ variants, onChange }: SelectOneManyT) {
       keyExtractor={(item, index) => String(index)}
       ListFooterComponent={() => <Space height={25} />}
       renderItem={({ item }) => (
-        <VariantButtons selectedItem={choice} item={item} onChange={handleChange} />
+        <VariantButtons
+          isSelected={choice === item}
+          item={item}
+          onChange={handleChange}
+        />
       )}
     />
   )
@@ -41,15 +43,15 @@ export function SelectOne({ variants, onChange }: SelectOneManyT) {
 interface VariantButtonsT {
   onChange: (changed: string) => void
   item: string
-  selectedItem: string
+  isSelected: boolean
 }
 
-function VariantButtons({ item, onChange, selectedItem }: VariantButtonsT) {
-  const isSelected = selectedItem === item
+const VariantButtons = memo(({ item, onChange, isSelected }: VariantButtonsT) => {
   const {
     colors: { icon, importantInfo }
   } = useTheme()
-  // IoCheckboxOutline IoCheckmarkCircleOutline IoEllipseOutline
+  console.log('choice')
+
   return (
     <Pressable
       onPress={() => {
@@ -66,7 +68,7 @@ function VariantButtons({ item, onChange, selectedItem }: VariantButtonsT) {
       <Text withoutMargin text={String(item)} h4 />
     </Pressable>
   )
-}
+})
 
 const styles = StyleSheet.create({
   btnContainer: {
